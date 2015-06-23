@@ -1,0 +1,9 @@
+{
+	"name": "sphero-share-server",
+	"version": "0.0.1",
+	"main": "./index.html",
+	"dependencies": {
+		"nw":"latest",
+		"sphero":"latest"
+	}	
+}
