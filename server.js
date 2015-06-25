@@ -31,12 +31,37 @@ function attachListeners(conn) {
 }
 
 function handleMessage(data) {
+	// Verbosity for debugging
+	document.getElementById("status").innerHTML = "Recieved command: " + data.type;
 	// Ignore any commands if we're not connected to the Sphero
 	if (!isSpheroConnected)
 		return;
-	// For now, we only communicate the color
-	orb.color(data)
-	document.getElementById("status").innerHTML = "Recived color command: " + data;
+	var message = data;//JSON.parse(data);
+	switch(message.type) {
+		case "setmode":
+			// TODO: Per-user state handling
+			console.warn("Message type 'setmode' not implemented.");
+			break;
+		case "text":
+			document.getElementById("message").innerHTML = message.from + ": " + message.body;
+			break;
+		case "drive":
+			// TODO: Command pooling and validation
+			orb.roll(message.speed, message.heading);
+			break;
+		case "heading":
+			// TODO
+			console.warn("Message type 'setmode' not implemented.");
+			break;
+		case "color":
+			// TODO: Validation
+			orb.color(message.color);
+			break;
+		default:
+			console.warn("Message type '" + message.type + "' not implemented.");
+	}
+	// Verbosity for debugging
+	document.getElementById("status").innerHTML = "Processed command: " + data.type;
 }
 
 setupID();
