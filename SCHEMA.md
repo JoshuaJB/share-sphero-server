@@ -3,7 +3,6 @@
 ## Operational Modes and Valid Schemas
 
 There are three different operational modes
-* Setup
 * Driving
 * Calibration
 
@@ -16,7 +15,6 @@ There are four different communication schemas:
 
 Each schema is only valid in specific modes, otherwise the message is ignored.
 
-The starting mode is always `setup`. Only `setmode` and `text` messages are used here.
 Once the device is switched into `drive` mode, only `heading` messages are invalid.
 When entered into `calibrate`, only `setmode`, `heading`, and `text` messages and valid.
 
@@ -26,8 +24,7 @@ When entered into `calibrate`, only `setmode`, `heading`, and `text` messages an
 ```JSON
 {
 	type: "setmode",
-	name: "<username>",
-	mode: "<setup, drive, or calibrate>"
+	mode: "<drive, or calibrate>"
 }
 ```
 
@@ -36,7 +33,6 @@ When entered into `calibrate`, only `setmode`, `heading`, and `text` messages an
 ```JSON
 {
 	type: "text",
-	from: "<username>",
 	body: "<body of message>"
 }
 ```
@@ -46,7 +42,7 @@ When entered into `calibrate`, only `setmode`, `heading`, and `text` messages an
 {
 	type: "drive",
 	heading: "<angle, from 0-359>",
-	speed: "<speed above 0>"
+	speed: "<speed from 0-255>"
 }
 ```
 
