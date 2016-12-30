@@ -34,7 +34,7 @@ function setupID() {
 }
 
 function listen(id) {
-	peer = new Peer(id, {host: 'sharesphero.azurewebsites.net', port: 80, path: "/share-sphero-broker"});
+	peer = new Peer(id, {key: "vlup1l2o869a4i"});
 	peer.on('connection', attachListeners);
 }
 
